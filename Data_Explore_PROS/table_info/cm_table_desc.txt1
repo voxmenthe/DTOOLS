@@ -1,0 +1,38 @@
+session_id          	string              	                    
+cookie_id           	string              	                    
+time_stamp          	string              	                    
+browser_type        	string              	                    
+javascript_version  	string              	                    
+language            	string              	                    
+screen_resolution   	string              	                    
+color_depth         	string              	                    
+operating_system    	string              	                    
+time_zone           	string              	                    
+mobile_network      	string              	                    
+connection_type     	string              	                    
+connection_speed    	string              	                    
+is_mobile_device    	string              	                    
+mobile_device       	string              	                    
+device_marketing_name	string              	                    
+device_model        	string              	                    
+device_type         	string              	                    
+device_vendor       	string              	                    
+cookie_support      	string              	                    
+flash_support       	string              	                    
+touch_screen        	string              	                    
+video_3gp_support   	string              	                    
+video_mp4_support   	string              	                    
+video_wmv_support   	string              	                    
+java_enabled        	string              	                    
+event_date          	date                	                    
+time                	string              	                    
+hour                	tinyint             	                    
+etl_crt_ts          	timestamp           	                    
+etl_upd_ts          	timestamp           	                    
+etl_batch_id        	int                 	                    
+dt                  	string              	                    
+	 	 
+# Partition Information	 	 
+# col_name            	data_type           	comment             
+	 	 
+dt                  	string              	                    

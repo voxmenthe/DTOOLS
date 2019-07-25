@@ -1,0 +1,27 @@
+SELECT map.KEYF_PRODUCTS AS pid, COALESCE(aold.ATTRIBUTE_NAME_SITE, adef.ATTR_NM) AS aname, map.ATTRIBUTEVALUE AS aval
+FROM BCMN.MDC_ATTRIBUTE_PRODUCT AS map 
+LEFT OUTER JOIN BCMN.ATTR_DEFN_T AS adef ON map.KEYF_ATTRIBUTE=adef.ATTR_ID
+LEFT OUTER JOIN BCMN.MDC_ATTRIBUTES_OLD AS aold ON map.keyf_attribute=aold.KEYP_ATTRIBUTE
+WHERE map.KEYF_ATTRIBUTE NOT IN 
+(SELECT v FROM (VALUES (11), (14), (17), (1006), (273), (24), (246), (1349), (5), (12), (267), (97), (210), (13), (109), (110), (139), 
+                       (284), (15), (293), (821), (1833), (1836), (421), (217), (417), (801), (1343), (1342), (11048), (10909), (1445), 
+                       (141), (31), (1813), (157), (1271), (29), (10415), (10565), (14319), (14321), (1810), (25), (10293), (14320), 
+                       (10383), (272), (719), (145), (10294), (938), (235), (962), (1801), (10332), (908), (259), (280), (205), (1512), 
+                       (10597), (10598), (10599), (1073), (1168), (1169), (817), (86), (216), (215), (89), (1120), (1610), (295), (294), 
+                       (11049), (289), (11044), (10573), (10016), (1241), (1268), (10589), (10710), (10560), (11042), (1284), (1303), 
+                       (10531), (430), (1024), (1020), (204), (1119), (1235), (1234), (1236), (1313), (10540), (1185), (1113), (1114), 
+                       (1115), (10348), (1304), (288), (144), (802), (10297)) AS vals(v))
+UNION ALL
+SELECT upc.KEYF_PRODUCTS AS pid, COALESCE(aold.ATTRIBUTE_NAME_SITE, adef.ATTR_NM) AS aname, uatr.ATTRIBUTEVALUE AS aval
+FROM BCMN.MDC_ATTRIBUTE_UPC_OLD AS uatr 
+INNER JOIN BCMN.MDC_UPC_OLD AS upc ON uatr.KEYF_UPC=upc.KEYP_UPC
+LEFT OUTER JOIN BCMN.ATTR_DEFN_T AS adef ON uatr.KEYF_ATTRIBUTE=adef.ATTR_ID
+LEFT OUTER JOIN BCMN.MDC_ATTRIBUTES_OLD AS aold ON uatr.keyf_attribute=aold.KEYP_ATTRIBUTE
+WHERE uatr.KEYF_ATTRIBUTE NOT IN 
+(SELECT v FROM (VALUES (1), (2), (3), (4), (119), (820), (298)) AS vals(v))
+UNION ALL
+SELECT upc.KEYF_PRODUCTS AS pid, 'NRF_COLOR' AS aname, CAST(upc.NRF_COLOR AS VARCHAR) AS aval FROM BCMN.MDC_UPC_OLD AS upc 
+UNION ALL
+SELECT upc.KEYF_PRODUCTS AS pid, 'NRF_SIZE' AS aname, CAST(upc.NRF_SIZE AS VARCHAR) AS aval FROM BCMN.MDC_UPC_OLD AS upc 
+ORDER BY pid
+WITH UR;
