@@ -3,6 +3,10 @@ import sys
 import time
 import pickle
 
+timestamp = time.ctime()
+timestamp = timestamp.replace(" ","_").replace(":","")
+
+
 # sys.path.append('/home/jovyan/work/a091569/cython_home')
 # sys.path.append('/home/jovyan/work/a091569/utils_and_queries')
 
@@ -12,9 +16,6 @@ import pickle
 # DATA_PATH = '/home/jovyan/datasets/d_train_20190923_60_0/'
 # #DATA_PATH = '/home/jovyan/data/yh09262/ur_train_20190131_46/'
 # #DATA_PATH = '/home/jovyan/data/yh09262/ur_train_20190220_3/'
-
-# timestamp = time.ctime()
-# timestamp = timestamp.replace(" ","_").replace(":","")
 
 # combined_dict = {}
 
@@ -60,6 +61,8 @@ import pickle
 # print("Saved combined_dict as comb_dict_20190923_60_{}.pkl".format(timestamp))
 
 # Open the saved dict
+
+print("Starting: {}".format(timestamp))
 
 with open('comb_dict_20190923_60_Mon_Oct__7_030143_2019.pkl', 'rb') as f:
     combined_dict = pickle.load(f)
@@ -112,7 +115,10 @@ with open('basket_puronlyds_20190923_60_{}.pkl'.format(timestamp), 'wb') as f:
 with open('basket_otherds_20190923_60_{}.pkl'.format(timestamp), 'wb') as f:
     pickle.dump(otherds, f)
 
-print("Saved all baskets")
+stamp = time.ctime()
+stamp = stamp.replace(" ","_").replace(":","")
+
+print("Saved all baskets: {}".format(stamp))
 
 ###################################################################
 ##################### CREATE SIMPLE SEQUENCES #####################
@@ -157,6 +163,11 @@ print("Saved one sequence")
 del simple_sequences
 del one_sequence
 gc.collect()
+
+stamp = time.ctime()
+stamp = stamp.replace(" ","_").replace(":","")
+
+print("Finish time: {}".format(stamp))
 
 ###################################################################
 ##################### CREATE OTHER SEQUENCES ######################
