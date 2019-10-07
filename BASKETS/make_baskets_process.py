@@ -61,6 +61,8 @@ import pickle
 
 # Open the saved dict
 
+with open('comb_dict_20190923_60_Mon_Oct__7_030143_2019.pkl', 'rb') as f:
+    combined_dict = pickle.load(f)
 
 ###########################################################
 ##################### PROCESS BASKETS #####################
@@ -119,26 +121,41 @@ print("Saved all baskets")
 # TODO: Add data augmentation by shuffling within each respective view, atb and purchase set.
 
 simple_sequences = []
-simple_sequences_fill = []
+one_sequence = []
 
 for x in viewatbpurds:
     simple_sequences.append(x['view'] + x['atb'] + x['purchase'])
+    one_sequence += x['view']
+    one_sequence += x['atb']
+    one_sequence += x['purchase']
 
 for x in viewatbds:
     simple_sequences.append(x['view'] + x['atb'])
+    one_sequence += x['view']
+    one_sequence += x['atb']
 
 for x in viewpurds:
     simple_sequences.append(x['view'] + x['purchase'])
+    one_sequence += x['view']
+    one_sequence += x['purchase']
 
 for x in atbpurds:
     simple_sequences.append(x['atb'] + x['purchase'])
+    one_sequence += x['atb']
+    one_sequence += x['purchase']
 
 with open('simple_sequences_20190923_60_{}.pkl'.format(timestamp), 'wb') as f:
     pickle.dump(simple_sequences, f)
 
 print("Saved simple sequences")
 
+with open('one_sequence_20190923_60_{}.pkl'.format(timestamp), 'wb') as f:
+    pickle.dump(one_sequence, f)
+
+print("Saved one sequence")
+
 del simple_sequences
+del one_sequence
 gc.collect()
 
 ###################################################################
